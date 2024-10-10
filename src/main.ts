@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { NgxEchartsModule } from 'ngx-echarts';
-import { MapChartComponent } from './app/map-chart/map-chart.component';
-import { BackgroundSvgComponent } from './app/background-svg/background-svg.component';
+import { Component } from "@angular/core";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { provideAnimations } from "@angular/platform-browser/animations";
+import { NgxEchartsModule, provideEcharts } from "ngx-echarts";
+import { MapChartComponent } from "./app/map-chart/map-chart.component";
+import { BackgroundSvgComponent } from "./app/background-svg/background-svg.component";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
   imports: [NgxEchartsModule, MapChartComponent, BackgroundSvgComponent],
   template: `
@@ -15,14 +15,9 @@ import { BackgroundSvgComponent } from './app/background-svg/background-svg.comp
   `,
 })
 export class App {
-  name = 'Angular';
+  name = "Angular";
 }
 
 bootstrapApplication(App, {
-  providers: [
-    provideAnimations(),
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-  ],
+  providers: [provideAnimations(), provideEcharts()],
 });
